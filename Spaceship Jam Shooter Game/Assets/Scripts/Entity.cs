@@ -8,7 +8,6 @@ public class Entity : MonoBehaviour
 
     public float Speed;
     public Vector2 Direction;
-    public int Health;
 
     public virtual void Movement()
     {

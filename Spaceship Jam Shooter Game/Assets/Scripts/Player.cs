@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using Unity.Jobs;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +10,8 @@ public class Player : Entity
 {
     private PlayerControls controls;
     private InputAction Move;
-
+    private int health = 5;
+    public Weapon weapon;
 
     private void Awake()
     {
@@ -58,5 +61,20 @@ public class Player : Entity
     private void Shoot(InputAction.CallbackContext callback)
     {
         Debug.Log("Shooting");
+    } 
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        ScoreManager.Lives--;
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        Destroy(gameObject);
     }
 }
