@@ -7,7 +7,8 @@ public class Entity : MonoBehaviour
     //Base class for player and enemies
 
     public float Speed;
-    public Vector2 Direction; 
+    public Vector2 Direction;
+    public int Health;
 
     public virtual void Movement()
     {
