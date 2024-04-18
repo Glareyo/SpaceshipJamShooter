@@ -12,13 +12,14 @@ public class Player : Entity
     private InputAction Move;
     private int health = 5;
     public Weapon weapon;
+    Camera cam;
+    private float DefaultSpeed;
 
     private void Awake()
     {
         controls = new PlayerControls();
-
-        controls.Enable(); //enable here for using an event
-        controls.Player.Shoot.performed += Shoot; //subscribe
+        cam = Camera.main;
+        
     }
 
     private void OnEnable()
@@ -30,14 +31,13 @@ public class Player : Entity
     private void OnDisable()
     {
         Move.Disable();
-        controls.Player.Shoot.performed -= Shoot; //unsubscribe
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        DefaultSpeed = Speed;
     }
 
     // Update is called once per frame
@@ -49,19 +49,36 @@ public class Player : Entity
     //For the player to move around
     public override void Movement()
     {
+        Vector2 screenPos = cam.WorldToScreenPoint(transform.position);
         var move = Move.ReadValue<Vector2>();
-        Direction.x = move.x; 
-        Direction.y = move.y;
+       
+        //Come back to edit
+        if (screenPos.x <= 0 || screenPos.x >= Screen.width )
+        {
+            Direction.x = -move.x;            
+        }
+        else
+        {
+            Direction.x = move.x;
+
+        }
+
+        if (screenPos.y <= 0 || screenPos.y >= Screen.height)
+        {
+            Direction.y = -move.y;
+        }
+        else
+        {
+            Direction.y = move.y;
+        }
+        
+       
 
         transform.Translate(Direction * Speed * Time.deltaTime);
+
+        
     }
 
-    //an event for the ship to shoot once 
-    //TODO: have another class to handle
-    private void Shoot(InputAction.CallbackContext callback)
-    {
-        Debug.Log("Shooting");
-    } 
 
     public void TakeDamage(int damage)
     {

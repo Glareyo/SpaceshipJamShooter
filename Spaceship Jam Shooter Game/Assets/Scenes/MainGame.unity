@@ -407,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 358530451}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 1.23, z: -83.12628}
+  m_LocalPosition: {x: -0.12, y: 2.06, z: -83.12628}
   m_LocalScale: {x: 1, y: 2.2551088, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -438,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 427083375}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.055999994, y: 1.11, z: -83.12628}
+  m_LocalPosition: {x: -0.055999994, y: 2.06, z: -83.12628}
   m_LocalScale: {x: 1, y: 2.255109, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -547,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Direction: {x: 0, y: 0}
+  health: 5
   weapon: {fileID: 0}
 --- !u!61 &852826682
 BoxCollider2D:
