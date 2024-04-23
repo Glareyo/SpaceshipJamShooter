@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sprPlayerRWing_0: -7241298814081987737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
