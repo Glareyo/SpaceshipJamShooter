@@ -102,7 +102,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   health: 3
   weaponMuzzle: {fileID: 2024164926634902305}
-  bullet: {fileID: 2537895829755913665, guid: 61337f38adb8f9f49b2aa424133e0d8c, type: 3}
+  bullet: {fileID: 2932702936647406167, guid: d535ee1d82790e848bd1d92eb91edcb6, type: 3}
   fireRate: 3000
 --- !u!1 &3619097808380565461
 GameObject:
