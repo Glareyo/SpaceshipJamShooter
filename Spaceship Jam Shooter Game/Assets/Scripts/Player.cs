@@ -72,11 +72,7 @@ public class Player : Entity
             Direction.y = move.y;
         }
         
-       
-
         transform.Translate(Direction * Speed * Time.deltaTime);
-
-        
     }
 
 

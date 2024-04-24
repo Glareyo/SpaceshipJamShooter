@@ -31,6 +31,12 @@ public class Bullet : MonoBehaviour
             player.TakeDamage(damage);
         }
 
+        Meteor meteor = hitCollide.GetComponent<Meteor>();
+        if (meteor != null) 
+        {
+            meteor.TakeDamage(damage);
+        }
+
         Destroy(gameObject);
     }
 
