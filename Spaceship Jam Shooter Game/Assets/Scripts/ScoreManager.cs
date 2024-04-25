@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public static int Lives = 5;
     public static int Score = 0;
+
+    public GameOver gameOverScreen;
 
     public Text LivesText, ScoreText;
     Vector2 livesLoc, scoreLoc;
@@ -37,6 +40,12 @@ public class ScoreManager : MonoBehaviour
         Lives = 5;
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        gameOverScreen.Setup(Score);
+    }
+
     void Awake()
     {
         ScoreManager.SetupNewGame();
@@ -54,5 +63,10 @@ public class ScoreManager : MonoBehaviour
     {
         LivesText.text = "Lives: " + ScoreManager.Lives.ToString();
         ScoreText.text = "Score: " + ScoreManager.Score.ToString();
+
+        if (Lives == 0)
+        {
+            EndGame();
+        }
     }
 }
