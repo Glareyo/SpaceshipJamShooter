@@ -75,10 +75,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -8275051646404776446, guid: 1d093011167115a41aa3763f85a311a2, type: 3}
   m_Color: {r: 0.5, g: 0, b: 0, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -102,7 +102,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   health: 3
   weaponMuzzle: {fileID: 2024164926634902305}
-  bullet: {fileID: 2537895829755913665, guid: 61337f38adb8f9f49b2aa424133e0d8c, type: 3}
+  bullet: {fileID: 2932702936647406167, guid: d535ee1d82790e848bd1d92eb91edcb6, type: 3}
   fireRate: 3000
 --- !u!1 &3619097808380565461
 GameObject:
