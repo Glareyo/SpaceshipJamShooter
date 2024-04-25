@@ -18,7 +18,7 @@ public class DatabaseConnection : MonoBehaviour
         form.AddField("score", DatabaseManager.score);
 
         //                                     
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/SpaceshipJamShooterWebAndDatabase/UnityGamee.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/SpaceshipJamShooterWebAndDatabase/UnityGame.php", form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
