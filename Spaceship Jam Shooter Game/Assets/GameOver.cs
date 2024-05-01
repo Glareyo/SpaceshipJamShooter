@@ -16,12 +16,16 @@ public class GameOver : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("You've started the game.");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("PlanetMenu");
     }
 
     public void QuitGame()
     {
         Debug.Log("You've quit the game.");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

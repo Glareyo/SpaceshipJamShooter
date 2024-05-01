@@ -40,12 +40,6 @@ public class ScoreManager : MonoBehaviour
         Lives = 5;
     }
 
-    public void EndGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        gameOverScreen.Setup(Score);
-    }
-
     void Awake()
     {
         ScoreManager.SetupNewGame();
@@ -68,5 +62,11 @@ public class ScoreManager : MonoBehaviour
         {
             EndGame();
         }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("EndMenu");
+        gameOverScreen.Setup(Score);
     }
 }
