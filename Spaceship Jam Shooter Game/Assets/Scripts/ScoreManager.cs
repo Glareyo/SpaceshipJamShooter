@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     public static int Score = 0;
 
     public GameOver gameOverScreen;
+    public PauseMenu pause;
+    public static bool isPaused = false;
 
     public Text LivesText, ScoreText;
     Vector2 livesLoc, scoreLoc;
@@ -58,6 +60,18 @@ public class ScoreManager : MonoBehaviour
         LivesText.text = "Lives: " + ScoreManager.Lives.ToString();
         ScoreText.text = "Score: " + ScoreManager.Score.ToString();
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                pause.Resume();
+            }
+            else
+            {
+                pause.Pause();
+            }
+        }
+
         if (Lives == 0)
         {
             EndGame();
@@ -66,7 +80,6 @@ public class ScoreManager : MonoBehaviour
 
     public void EndGame()
     {
-        SceneManager.LoadScene("EndMenu");
-        gameOverScreen.Setup(Score);
+        gameOverScreen.Setup(ScoreManager.Score.ToString());
     }
 }

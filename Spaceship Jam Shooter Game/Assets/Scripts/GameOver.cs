@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    public GameObject gameOver;
     public Text points;
 
-    public void Setup(int score)
+    public void Setup(string score)
     {
-        points.text = "Score: " + score.ToString();
+        gameOver.SetActive(true);
+        points.text = "Score: " + score;
     }
 
     public void PlayGame()
