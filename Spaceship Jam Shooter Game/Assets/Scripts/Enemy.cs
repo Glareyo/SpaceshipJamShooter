@@ -73,6 +73,7 @@ public class Enemy : Entity
     {
         Destroy(gameObject);
         ScoreManager.Score++;
+        ScoreManager.EnemiesDestroyed++;
     }
 
 }

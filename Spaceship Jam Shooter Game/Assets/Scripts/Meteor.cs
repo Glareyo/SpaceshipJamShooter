@@ -194,5 +194,6 @@ public class Meteor : MonoBehaviour
     {
         Destroy(gameObject);
         ScoreManager.Score++;
+        ScoreManager.MeteorsDestroyed++;
     }
 }
