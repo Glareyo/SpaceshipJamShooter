@@ -8,9 +8,9 @@ public enum MeteorState { Idle, MoveLeft, MoveRight, MoveUp, MoveDown }
 public class Meteor : MonoBehaviour
 {
     public MeteorState State;
+    public int Damage;
 
     private float Speed = 5f;
-    //bool move = true;
     private int health = 1;
     private SpriteRenderer sprite;
 
@@ -117,6 +117,30 @@ public class Meteor : MonoBehaviour
         //transform.Rotate.Z +=1;
     }
 
+
+    /// <summary>
+    /// Checks collision to see if it collides with the player or enemy.
+    /// </summary>
+    /// <param name="hitCollide">Colliding Target</param>
+    void OnTriggerEnter2D(Collider2D hitCollide)
+    {
+        //***************************************************
+        //Commented out for now.
+        /*Enemy enemy = hitCollide.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(Damage);
+        }*/
+        //***************************************************
+
+        Player player = hitCollide.GetComponent<Player>();
+        if (player != null)
+        {
+            player.TakeDamage(Damage);
+        }
+
+        Destroy(gameObject);
+    }
 
     /// <summary>
     /// Destroys asteroids if they are off screen
