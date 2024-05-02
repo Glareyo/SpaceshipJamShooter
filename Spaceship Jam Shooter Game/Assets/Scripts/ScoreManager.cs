@@ -9,6 +9,10 @@ public class ScoreManager : MonoBehaviour
     public static int Lives = 5;
     public static int Score = 0;
 
+    public static int EnemiesDestroyed = 0;
+    public static int MeteorsDestroyed = 0;
+
+
     public GameOver gameOverScreen;
     public PauseMenu pause;
     public static bool isPaused = false;
@@ -20,6 +24,8 @@ public class ScoreManager : MonoBehaviour
     {
         Lives = 5;
         Score = 0;
+        EnemiesDestroyed = 0;
+        MeteorsDestroyed = 0;
     }
 
     public void ScoreAdd()
@@ -80,6 +86,6 @@ public class ScoreManager : MonoBehaviour
 
     public void EndGame()
     {
-        gameOverScreen.Setup(ScoreManager.Score.ToString());
+        gameOverScreen.Setup(ScoreManager.Score.ToString(), ScoreManager.EnemiesDestroyed.ToString(), ScoreManager.MeteorsDestroyed.ToString());
     }
 }

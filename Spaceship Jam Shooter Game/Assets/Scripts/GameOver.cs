@@ -9,10 +9,14 @@ public class GameOver : MonoBehaviour
     public GameObject gameOver;
     public Text points;
 
-    public void Setup(string score)
+    public void Setup(string score, string enemiesDestroyed, string meteorsDestroyed)
     {
+        points.text = $"Score: {score}";
+        points.text += $"\nEnemies Destroyed: {enemiesDestroyed}";
+        points.text += $"\nMeteors Destroyed: {meteorsDestroyed}";
+
         gameOver.SetActive(true);
-        points.text = "Score: " + score;
+        
     }
 
     public void PlayGame()
