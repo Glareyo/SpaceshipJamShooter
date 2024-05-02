@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.46453738, g: 0.37924528, b: 0.6320754, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoToSceneID: 2
+  HoverImage: {fileID: 8961090413319157468, guid: 90f344e555d8372479b9536d3c7342f8, type: 3}
 --- !u!1 &1368385799
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +542,7 @@ Transform:
   m_GameObject: {fileID: 1440599276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 373, y: 274.5691, z: 90.18}
+  m_LocalPosition: {x: 361, y: 274.5691, z: 90.18}
   m_LocalScale: {x: 51.334034, y: 50.69576, z: 2.8076}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -877,7 +878,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.6494267, g: 0.5410467, b: 0.9622642, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -962,6 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoToSceneID: 3
+  HoverImage: {fileID: 8961090413319157468, guid: 90f344e555d8372479b9536d3c7342f8, type: 3}
 --- !u!1 &1920636938
 GameObject:
   m_ObjectHideFlags: 0
