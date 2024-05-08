@@ -157,22 +157,9 @@ public class Meteor : MonoBehaviour
     /// Used code from his Bullet Object
     void DestroyAsteroidOffScreen()
     {
-        if (transform.position.x > screenBounds.x * 1.2)
-        {
-            Destroy(this.gameObject);
-        }
+        Vector2 screenPosition = cam.WorldToScreenPoint(transform.position);
 
-        if (transform.position.y > screenBounds.y * 1.2)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (transform.position.x < screenBounds.x * -1.2)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (transform.position.y < screenBounds.y * -1.2)
+        if (screenPosition.x < 0 || screenPosition.x > cam.pixelWidth || screenPosition.y < 0 || screenPosition.y > cam.pixelHeight)
         {
             Destroy(this.gameObject);
         }
