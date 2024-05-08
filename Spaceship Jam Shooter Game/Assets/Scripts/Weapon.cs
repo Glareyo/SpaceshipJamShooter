@@ -50,5 +50,6 @@ public class Weapon : MonoBehaviour
     {
         Bullet projectile = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         projectile.rb.velocity = Vector2.up * projectile.speed;
+        projectile.PlayerIsShooter = true;
     }
 }

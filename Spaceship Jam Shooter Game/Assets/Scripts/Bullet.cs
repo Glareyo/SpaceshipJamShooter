@@ -5,6 +5,10 @@ using UnityEngine;
 //This reddit post helped figure out how to delete bullet when going off the main camera view: https://www.reddit.com/r/Unity2D/comments/rjgcti/objects_wont_delete_when_they_go_off_screen/
 public class Bullet : MonoBehaviour
 {
+    private bool playerIsShooter;
+    public bool PlayerIsShooter { set { playerIsShooter = value; } }
+
+
     public float speed = 20f;
     public int damage = 1;
     public Rigidbody2D rb;
@@ -19,25 +23,34 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitCollide)
     {
-        Enemy enemy = hitCollide.GetComponent<Enemy>();
-        if (enemy != null)
+        if (playerIsShooter)
         {
-            enemy.TakeDamage(damage);
+            Enemy enemy = hitCollide.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Player player = hitCollide.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            Destroy(gameObject);
+            }
         }
 
-        Player player = hitCollide.GetComponent<Player>();
-        if (player != null)
-        {
-            player.TakeDamage(damage);
-        }
+        
 
         Meteor meteor = hitCollide.GetComponent<Meteor>();
-        if (meteor != null) 
+        if (meteor != null)
         {
             meteor.TakeDamage(damage);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
 
     private void Awake()
