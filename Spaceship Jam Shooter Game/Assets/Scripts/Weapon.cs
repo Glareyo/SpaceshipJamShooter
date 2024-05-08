@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
 
     private PlayerControls controls;
 
+    public AudioSource audioSource;
+    public AudioClip shootingClip;
+
 
     private void Awake()
     {
@@ -61,10 +64,10 @@ public class Weapon : MonoBehaviour
     private IEnumerator ShootWithDelay()
     {
         canShoot = false;
-
+        audioSource.PlayOneShot(shootingClip);
         Bullet projectile = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         projectile.rb.velocity = Vector2.up * projectile.speed;
-        
+
         yield return new WaitForSeconds(delayShots);
         canShoot = true;
     }
