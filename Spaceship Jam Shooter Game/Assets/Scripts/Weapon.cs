@@ -67,6 +67,7 @@ public class Weapon : MonoBehaviour
         audioSource.PlayOneShot(shootingClip);
         Bullet projectile = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         projectile.rb.velocity = Vector2.up * projectile.speed;
+        projectile.PlayerIsShooter = true;
 
         yield return new WaitForSeconds(delayShots);
         canShoot = true;
