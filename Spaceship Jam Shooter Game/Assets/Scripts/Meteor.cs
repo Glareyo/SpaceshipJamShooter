@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum MeteorState { Idle, MoveLeft, MoveRight, MoveUp, MoveDown }
 
@@ -17,6 +19,12 @@ public class Meteor : MonoBehaviour
     //Credit: Gursimar
     //Code copied from his bullet script
     private Vector2 screenBounds;
+
+    Camera cam;
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +92,7 @@ public class Meteor : MonoBehaviour
         }
 
         RotateMeteor();
-        //KeepAsteroidOnScreen();
+        KeepAsteroidOnScreen();
         DestroyAsteroidOffScreen();
     }
 
@@ -149,22 +157,9 @@ public class Meteor : MonoBehaviour
     /// Used code from his Bullet Object
     void DestroyAsteroidOffScreen()
     {
-        if (transform.position.x > screenBounds.x * 1.2)
-        {
-            Destroy(this.gameObject);
-        }
+        Vector2 screenPosition = cam.WorldToScreenPoint(transform.position);
 
-        if (transform.position.y > screenBounds.y * 1.2)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (transform.position.x < screenBounds.x * -1.2)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (transform.position.y < screenBounds.y * -1.2)
+        if (screenPosition.x < 0 || screenPosition.x > cam.pixelWidth || screenPosition.y < 0 || screenPosition.y > cam.pixelHeight)
         {
             Destroy(this.gameObject);
         }
@@ -175,13 +170,17 @@ public class Meteor : MonoBehaviour
     /// </summary>
     void KeepAsteroidOnScreen()
     {
+        Vector2 screenPos = cam.WorldToScreenPoint(transform.position);
+
+        //Evy: Adjusted the condition to check based on the position within the camera
         //Asteroid off screen to the right.
-        if (transform.position.x >= 8f)
+        if (screenPos.x >= Screen.width) //(transform.position.x >= 8f)
         {
+            //State = (MeteorState)Random.Range(1,5);
             State = MeteorState.MoveLeft;
         }
         //Asteroid off Screen to the left.
-        if (transform.position.x <= -8f)
+        if (screenPos.x <= 0) //(transform.position.x <= -8f)
         {
             State = MeteorState.MoveRight;
         }

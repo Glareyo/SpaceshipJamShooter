@@ -23,6 +23,7 @@ public class WaveSpawner : MonoBehaviour
     public Animator animator;
     public Text WaveName;
 
+    public GameOver gameOverScreen;
     private Wave currentWave;
     private int currentWaveNumber;
     private float nextSpawnTime;
@@ -49,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
             else
             {
                 Debug.Log("Game Finished");
-                SceneManager.LoadScene("EndMenu");
+                gameOverScreen.Setup(ScoreManager.Score.ToString(), ScoreManager.EnemiesDestroyed.ToString(), ScoreManager.MeteorsDestroyed.ToString());
             }
         }
     }

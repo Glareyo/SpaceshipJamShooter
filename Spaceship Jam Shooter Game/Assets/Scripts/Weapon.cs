@@ -7,7 +7,15 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+
+    public float delayShots = 1f;
+    private bool canShoot = true;
+
     private PlayerControls controls;
+
+    public AudioSource audioSource;
+    public AudioClip shootingClip;
+
 
     private void Awake()
     {
@@ -31,11 +39,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }*/
+
     }
 
     /*
@@ -46,10 +50,25 @@ public class Weapon : MonoBehaviour
     }*/
 
     //switch to use event instead of checking update to save some performance
+
+
     private void Shoot(InputAction.CallbackContext callback)
     {
+        if (canShoot)
+        {
+            StartCoroutine(ShootWithDelay());
+        }
+    }
+
+    //Delay between shots
+    private IEnumerator ShootWithDelay()
+    {
+        canShoot = false;
+        audioSource.PlayOneShot(shootingClip);
         Bullet projectile = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         projectile.rb.velocity = Vector2.up * projectile.speed;
-        projectile.PlayerIsShooter = true;
+
+        yield return new WaitForSeconds(delayShots);
+        canShoot = true;
     }
 }
