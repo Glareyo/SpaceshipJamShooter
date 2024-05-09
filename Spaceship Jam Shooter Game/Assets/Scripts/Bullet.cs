@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private bool playerIsShooter;
+    public bool PlayerIsShooter { set { playerIsShooter = value; } }
+
+
     public float speed = 20f;
     public int damage = 1;
     Camera cam;
@@ -22,25 +26,34 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitCollide)
     {
-        Enemy enemy = hitCollide.GetComponent<Enemy>();
-        if (enemy != null)
+        if (playerIsShooter)
         {
-            enemy.TakeDamage(damage);
+            Enemy enemy = hitCollide.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Player player = hitCollide.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            Destroy(gameObject);
+            }
         }
 
-        Player player = hitCollide.GetComponent<Player>();
-        if (player != null)
-        {
-            player.TakeDamage(damage);
-        }
+        
 
         Meteor meteor = hitCollide.GetComponent<Meteor>();
-        if (meteor != null) 
+        if (meteor != null)
         {
             meteor.TakeDamage(damage);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
 
     private void Awake()
