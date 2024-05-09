@@ -21,6 +21,9 @@ public class Meteor : MonoBehaviour
     private Vector2 screenBounds;
 
     Camera cam;
+    [SerializeField]
+    private Vector2 Direction;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -90,10 +93,11 @@ public class Meteor : MonoBehaviour
                 MovingMeteorDown();
                 break;
         }
-
+        transform.Translate(Direction * Speed * Time.deltaTime);
+        
         RotateMeteor();
         KeepAsteroidOnScreen();
-        DestroyAsteroidOffScreen();
+        //DestroyAsteroidOffScreen();
     }
 
     //******************************************************************************
@@ -101,21 +105,25 @@ public class Meteor : MonoBehaviour
     //******************************************************************************
     void MovingMeteorRight()
     {
-        transform.Translate(Speed * Time.deltaTime, 0, 0);
+        //transform.Translate(Speed * Time.deltaTime, 0, 0);
+        Direction.x = 1;
         sprite.flipX = false;
     }
     void MovingMeteorLeft()
     {
-        transform.Translate(-Speed * Time.deltaTime, 0, 0);
+        //transform.Translate(-Speed * Time.deltaTime, 0, 0);
+        Direction.x = -1;
         sprite.flipX = true;
     }
     void MovingMeteorUp()
     {
-        transform.Translate(0, Speed * Time.deltaTime, 0);
+        //transform.Translate(0, Speed * Time.deltaTime, 0);
+        Direction.y = 1;
     }
     void MovingMeteorDown()
     {
-        transform.Translate(0, -Speed * Time.deltaTime, 0);
+        //transform.Translate(0, -Speed * Time.deltaTime, 0);
+        Direction.y = -1;
     }
     //******************************************************************************
     //******************************************************************************
@@ -174,27 +182,49 @@ public class Meteor : MonoBehaviour
 
         //Evy: Adjusted the condition to check based on the position within the camera
         //Asteroid off screen to the right.
-        if (screenPos.x >= Screen.width) //(transform.position.x >= 8f)
+        if (screenPos.x >= Screen.width) //State cannot be MoveRight //(transform.position.x >= 8f)
         {
-            //State = (MeteorState)Random.Range(1,5);
-            State = MeteorState.MoveLeft;
+            RandomizeAsteroidMovement(2, MeteorState.MoveLeft);
+            //State = MeteorState.MoveLeft;
         }
         //Asteroid off Screen to the left.
         if (screenPos.x <= 0) //(transform.position.x <= -8f)
         {
-            State = MeteorState.MoveRight;
+            //State = MeteorState.MoveRight;
+            RandomizeAsteroidMovement(1, MeteorState.MoveRight);
         }
         //Asteroid off screen at the top.
-        if (transform.position.y >= 8f)
+        if (screenPos.y >= Screen.height)//(transform.position.y >= 8f)
         {
             State = MeteorState.MoveDown;
         }
         //Asteroid off screen at the bottom.
-        if (transform.position.y <= -8f)
+        if ((screenPos.y <= 0))//(transform.position.y <= -8f)
         {
             State = MeteorState.MoveUp;
         }
         
+    }
+
+    /// <summary>
+    /// This is to randomize the astroid to move around the screen. This first gets a random number and
+    /// sets it as the state. If the random number is the same as the direction it was currently going, 
+    /// it just sets the opposite direction. This is to ensure they don't get stuck or push out of the 
+    /// screen.
+    /// </summary>
+    /// <param name="stateValue"></param>
+    /// <param name="setNextState"></param>
+    private void RandomizeAsteroidMovement(int stateValue, MeteorState setNextState)
+    {
+        int setState = Random.Range(1, 5);
+        if (setState == stateValue)
+        {
+            State = setNextState;
+        }
+        else
+        {
+            State = (MeteorState)setState;
+        }
     }
 
     /// <summary>

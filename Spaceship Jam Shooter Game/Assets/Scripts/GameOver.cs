@@ -16,6 +16,8 @@ public class GameOver : MonoBehaviour
         points.text += $"\nMeteors Destroyed: {meteorsDestroyed}";
 
         gameOver.SetActive(true);
+
+        DatabaseConnection.connectionState = ConnectionState.Connect;
         
     }
 
