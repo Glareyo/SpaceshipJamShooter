@@ -30,10 +30,17 @@ public class DatabaseConnection : MonoBehaviour
     {
         if(connectionState == ConnectionState.Connect)
         {
+            DatabaseManager.username = GetCurrentUser();
             DatabaseManager.id = 1; //It will always be the first ID
             DatabaseManager.score = ScoreManager.Score;
             UploadData();
         }
+    }
+
+    public string GetCurrentUser()
+    {
+        GameObject usernameObject = GameObject.FindGameObjectWithTag("username");
+        return usernameObject.name;
     }
 
     public void UploadData()
@@ -44,7 +51,7 @@ public class DatabaseConnection : MonoBehaviour
     IEnumerator SetSaveData()
     {
         WWWForm form = new WWWForm();
-        form.AddField("id", DatabaseManager.id);
+        form.AddField("username", DatabaseManager.username);
         form.AddField("score", DatabaseManager.score);
 
         //                                     
@@ -70,8 +77,6 @@ public class DatabaseManager : MonoBehaviour
 {
     public static int score;
     public static int id;
-
-   
-
+    public static string username;
 }
 
