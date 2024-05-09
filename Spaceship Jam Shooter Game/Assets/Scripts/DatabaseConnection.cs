@@ -31,7 +31,7 @@ public class DatabaseConnection : MonoBehaviour
         if(connectionState == ConnectionState.Connect)
         {
             DatabaseManager.username = GetCurrentUser();
-            DatabaseManager.id = 1; //It will always be the first ID
+            //DatabaseManager.id = 1; //It will always be the first ID
             DatabaseManager.score = ScoreManager.Score;
             UploadData();
         }
